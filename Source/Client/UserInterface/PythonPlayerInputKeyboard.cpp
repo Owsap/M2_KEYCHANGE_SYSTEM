@@ -139,10 +139,10 @@ void CPythonPlayer::OnKeyDown(int iKey)
 		case KEY_SLOT_7: RequestUseLocalQuickSlot(6); break;
 		case KEY_SLOT_8: RequestUseLocalQuickSlot(7); break;
 
-		case KEY_SLOT_CHANGE_1: SetQuickPage(1); break;
-		case KEY_SLOT_CHANGE_2: SetQuickPage(2); break;
-		case KEY_SLOT_CHANGE_3: SetQuickPage(3); break;
-		case KEY_SLOT_CHANGE_4: SetQuickPage(4); break;
+		case KEY_SLOT_CHANGE_1: SetQuickPage(0); break;
+		case KEY_SLOT_CHANGE_2: SetQuickPage(1); break;
+		case KEY_SLOT_CHANGE_3: SetQuickPage(2); break;
+		case KEY_SLOT_CHANGE_4: SetQuickPage(3); break;
 
 		case KEY_OPEN_STATE:
 			PyCallClassMemberFunc(m_ppyGameWindow, "OpenWindow", Py_BuildValue("(is)", KEY_OPEN_STATE, "STATUS"));
