@@ -18,33 +18,20 @@ static void SetEmoticon(BYTE byIndex)
 
 void CPythonPlayer::OnKeyDown(int iKey)
 {
-	if (iKey == DIK_LMENU)
-	{
-		SetQuickPage(GetQuickPage() + 1);
-		PyCallClassMemberFunc(m_ppyGameWindow, "ShowName", Py_BuildValue("()"));
-	}
+	if (CPythonApplication::Instance().IsPressed(DIK_LCONTROL))
+		iKey += DIK_LCONTROL + KEY_ADDKEYBUFFERCONTROL;
+	else if (CPythonApplication::Instance().IsPressed(DIK_RCONTROL))
+		iKey += DIK_RCONTROL + KEY_ADDKEYBUFFERCONTROL;
 
-	if (CPythonApplication::Instance().IsPressed(DIK_LCONTROL) || CPythonApplication::Instance().IsPressed(DIK_RCONTROL))
-	{
-		if (m_keySettingMap[iKey + CPythonPlayer::EKeySettings::KEY_ADDKEYBUFFERCONTROL + DIK_LCONTROL] != 0)
-		{
-			iKey += CPythonPlayer::EKeySettings::KEY_ADDKEYBUFFERCONTROL + DIK_LCONTROL;
-		}
-	}
-	else if (CPythonApplication::Instance().IsPressed(DIK_LMENU) || CPythonApplication::Instance().IsPressed(DIK_RMENU))
-	{
-		if (m_keySettingMap[iKey + CPythonPlayer::EKeySettings::KEY_ADDKEYBUFFERALT + DIK_LMENU] != 0)
-		{
-			iKey += CPythonPlayer::EKeySettings::KEY_ADDKEYBUFFERALT + DIK_LMENU;
-		}
-	}
-	else if (CPythonApplication::Instance().IsPressed(DIK_LSHIFT) || CPythonApplication::Instance().IsPressed(DIK_RSHIFT))
-	{
-		if (m_keySettingMap[iKey + CPythonPlayer::EKeySettings::KEY_ADDKEYBUFFERSHIFT + DIK_LSHIFT] != 0)
-		{
-			iKey += CPythonPlayer::EKeySettings::KEY_ADDKEYBUFFERSHIFT + DIK_LSHIFT;
-		}
-	}
+	else if (CPythonApplication::Instance().IsPressed(DIK_LALT))
+		iKey += DIK_LALT + KEY_ADDKEYBUFFERALT;
+	else if (CPythonApplication::Instance().IsPressed(DIK_RALT))
+		iKey += DIK_RALT + KEY_ADDKEYBUFFERALT;
+
+	else if (CPythonApplication::Instance().IsPressed(DIK_LSHIFT))
+		iKey += DIK_LSHIFT + KEY_ADDKEYBUFFERSHIFT;
+	else if (CPythonApplication::Instance().IsPressed(DIK_RSHIFT))
+		iKey += DIK_RSHIFT + KEY_ADDKEYBUFFERSHIFT;
 
 	KeySettingMap::iterator it = m_keySettingMap.find(iKey);
 	if (it != m_keySettingMap.end())
@@ -244,12 +231,6 @@ void CPythonPlayer::OnKeyDown(int iKey)
 
 void CPythonPlayer::OnKeyUp(int iKey)
 {
-	if (iKey == DIK_LMENU)
-	{
-		SetQuickPage(GetQuickPage() - 1);
-		PyCallClassMemberFunc(m_ppyGameWindow, "HideName", Py_BuildValue("()"));
-	}
-
 	KeySettingMap::iterator it = m_keySettingMap.find(iKey);
 	if (it != m_keySettingMap.end())
 	{
