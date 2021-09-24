@@ -18,6 +18,12 @@ static void SetEmoticon(BYTE byIndex)
 
 void CPythonPlayer::OnKeyDown(int iKey)
 {
+	if (iKey == DIK_LALT)
+	{
+		SetQuickPage(GetQuickPage() + 1);
+		PyCallClassMemberFunc(m_ppyGameWindow, "ShowName", Py_BuildValue("()"));
+	}
+
 	if (CPythonApplication::Instance().IsPressed(DIK_LCONTROL))
 		iKey += DIK_LCONTROL + KEY_ADDKEYBUFFERCONTROL;
 	else if (CPythonApplication::Instance().IsPressed(DIK_RCONTROL))
@@ -231,6 +237,12 @@ void CPythonPlayer::OnKeyDown(int iKey)
 
 void CPythonPlayer::OnKeyUp(int iKey)
 {
+	if (iKey == DIK_LALT)
+	{
+		SetQuickPage(GetQuickPage() - 1);
+		PyCallClassMemberFunc(m_ppyGameWindow, "HideName", Py_BuildValue("()"));
+	}
+
 	KeySettingMap::iterator it = m_keySettingMap.find(iKey);
 	if (it != m_keySettingMap.end())
 	{
