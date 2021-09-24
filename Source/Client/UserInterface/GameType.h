@@ -4,7 +4,7 @@ enum EWindows
 
 // Add above
 #if defined(ENABLE_KEYCHANGE_SYSTEM)
-enum EKeyboardSetting
+enum EKeySettings
 {
 	KEY_NONE,
 	KEY_MOVE_UP_1,
