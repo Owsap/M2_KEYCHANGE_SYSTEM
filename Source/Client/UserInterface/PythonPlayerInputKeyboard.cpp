@@ -18,6 +18,9 @@ static void SetEmoticon(BYTE byIndex)
 
 void CPythonPlayer::OnKeyDown(int iKey)
 {
+	if (m_isOpenKeySettingWindow)
+		return;
+
 	if (iKey == DIK_LMENU)
 	{
 		SetQuickPage(GetQuickPage() + 1);
@@ -244,6 +247,9 @@ void CPythonPlayer::OnKeyDown(int iKey)
 
 void CPythonPlayer::OnKeyUp(int iKey)
 {
+	if (m_isOpenKeySettingWindow)
+		return;
+
 	if (iKey == DIK_LMENU)
 	{
 		SetQuickPage(GetQuickPage() - 1);
