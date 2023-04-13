@@ -20,5 +20,6 @@ private:
 	int m_iKeyBuffer;
 	BOOL m_isOpenKeySettingWindow;
 	KeySettingMap m_keySettingMap;
+	bool m_bAutoRun;
 public:
 #endif

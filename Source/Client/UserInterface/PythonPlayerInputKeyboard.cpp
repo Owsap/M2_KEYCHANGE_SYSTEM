@@ -79,7 +79,8 @@ void CPythonPlayer::OnKeyDown(int iKey)
 			break;
 
 		case KEY_AUTO_RUN:
-			PyCallClassMemberFunc(m_ppyGameWindow, "MoveUp", Py_BuildValue("()"));
+			m_bAutoRun = !m_bAutoRun;
+			NEW_SetSingleDIKKeyState(0xC8, m_bAutoRun);
 			break;
 
 		case KEY_RIDEMYHORS:
@@ -263,6 +264,7 @@ void CPythonPlayer::OnKeyUp(int iKey)
 		{
 		case KEY_MOVE_UP_1:
 		case KEY_MOVE_UP_2:
+			m_bAutoRun = false;
 			NEW_SetSingleDIKKeyState(DIK_UP, false);
 			break;
 

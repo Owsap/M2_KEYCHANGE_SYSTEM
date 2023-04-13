@@ -20,3 +20,12 @@ void CPythonPlayer::OpenKeyChangeWindow()
 	m_isOpenKeySettingWindow = FALSE;
 	m_keySettingMap.clear();
 #endif
+
+/// 3.
+// Search @ CPythonPlayer::CPythonPlayer
+	m_iLastAlarmTime = 0;
+
+// Add below
+#if defined(ENABLE_KEYCHANGE_SYSTEM)
+	m_bAutoRun = false;
+#endif
